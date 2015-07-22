@@ -28,6 +28,15 @@ def get_student():
         list_of_tuples=list_of_tuples)
     return html
 
+@app.route("/project")
+def project_details():
+    """Show the detailed information about a project"""
+    title = request.args.get('project')
+    title, description, max_grade = hackbright.get_project_by_title(title)
+
+    html = render_template("/project.html", title=title, description=description, max_grade=max_grade)
+    return html
+
 @app.route("/student-add", methods=['POST'])
 def student_add():
     """Add a student"""

@@ -47,7 +47,11 @@ def get_project_by_title(title):
         """
     db_cursor.execute(QUERY, (title,))
     row = db_cursor.fetchone()
+    title = row[0]
+    description = row[1]
+    max_grade = row[2]
     print "Title: %s\nDescription: %s\nMax Grade: %d" % row
+    return (title, description, max_grade)
 
 
 def get_grade_by_github_title(github, title):

@@ -10,7 +10,7 @@
 
 <ul>
   {% for tuple in list_of_tuples %}
-        <li>{{ tuple[1] }} {{ tuple[2] }}</li>
+        <li><a href="/project?project={{ tuple[1] }}">{{ tuple[1] }}</a> {{ tuple[2] }}</li>
   {% endfor %}
 </ul>
 
