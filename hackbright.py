@@ -64,6 +64,16 @@ def get_grade_by_github_title(github, title):
     print "Student %s in project %s received grade of %s" % (
         github, title, row[0])
 
+def list_of_project_grades(github):
+    """return a list of tuple that includs all the project titles and grades
+    of this student"""
+    QUERY = """SELECT * FROM Grades WHERE student_github = ?"""
+    db_cursor.execute(QUERY, (github,))
+    data_list = db_cursor.fetchall()
+    print data_list
+    return data_list
+
+
 
 def assign_grade(github, title, grade):
     """Assign a student a grade on an assignment and print a confirmation."""
@@ -109,6 +119,10 @@ def handle_input():
         elif command == "assign_grade":
             github, title, grade = args
             assign_grade(github, title, grade)
+
+        elif command == "check_grades":
+            github = args[0]
+            list_of_project_grades(github)
 
 
 if __name__ == "__main__":

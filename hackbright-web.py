@@ -20,7 +20,12 @@ def get_student():
 
     github = request.args.get('github', 'jhacks')
     first, last, github = hackbright.get_student_by_github(github)
-    html = render_template("student_info.html", first=first, last=last, github=github)
+    list_of_tuples = hackbright.list_of_project_grades(github)
+
+
+
+    html = render_template("student_info.html", first=first, last=last, github=github, \
+        list_of_tuples=list_of_tuples)
     return html
 
 @app.route("/student-add", methods=['POST'])
